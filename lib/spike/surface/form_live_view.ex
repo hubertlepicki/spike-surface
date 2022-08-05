@@ -46,7 +46,7 @@ defmodule Spike.Surface.FormLiveView do
       ) do
     form =
       socket.assigns.form_data
-      |> Spike.update(ref, %{key => value})
+      |> Spike.update(ref, %{key => if value == "" do nil else value end})
 
     socket
     |> Phoenix.LiveView.assign(%{
