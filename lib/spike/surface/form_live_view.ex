@@ -2,7 +2,6 @@ defmodule Spike.Surface.FormLiveView do
   defmacro __using__(_opts) do
     quote do
       data(form_data, :struct)
-      data(dirty_fields, :map, default: %{})
       data(errors, :map, default: %{})
 
       @before_compile unquote(__MODULE__)
@@ -52,8 +51,7 @@ defmodule Spike.Surface.FormLiveView do
     socket
     |> Phoenix.LiveView.assign(%{
       form_data: form,
-      errors: Spike.errors(form),
-      dirty_fields: Spike.dirty_fields(form)
+      errors: Spike.errors(form)
     })
   end
 end

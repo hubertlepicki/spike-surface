@@ -9,9 +9,10 @@ defmodule Spike.Surface.Errors do
   slot(default, args: [:field_errors])
 
   def render(assigns) do
-    assigns = assigns
-              |> assign_new(:dirty_fields, fn -> Spike.dirty_fields(assigns.form_data) end)
- 
+    assigns =
+      assigns
+      |> assign_new(:dirty_fields, fn -> Spike.dirty_fields(assigns.form_data) end)
+
     if field_errors(assigns) != [] do
       ~F"""
         <#slot :args={field_errors: field_errors(assigns)} />
