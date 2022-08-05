@@ -2,13 +2,16 @@ defmodule Spike.Surface.Errors do
   use Surface.Component
 
   prop(errors, :map, required: true)
-  prop(dirty_fields, :map, required: true)
+  prop(dirty_fields, :map, required: false)
   prop(form_data, :struct, required: true)
   prop(key, :atom, required: true)
 
   slot(default, args: [:field_errors])
 
   def render(assigns) do
+    assigns = assigns
+              |> assign_new(:dirty_fields, fn -> Spike.dirty_fields(assigns.form_data) end)
+ 
     if field_errors(assigns) != [] do
       ~F"""
         <#slot :args={field_errors: field_errors(assigns)} />

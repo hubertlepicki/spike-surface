@@ -1,8 +1,6 @@
-defmodule Spike.Surface.FormComponent do
+defmodule Spike.Surface.FormLiveView do
   defmacro __using__(_opts) do
     quote do
-      use Surface.LiveComponent
-
       data(form_data, :struct)
       data(dirty_fields, :map, default: %{})
       data(errors, :map, default: %{})
@@ -25,7 +23,7 @@ defmodule Spike.Surface.FormComponent do
             super(event, args, socket)
           rescue
             _e in FunctionClauseError ->
-              {:noreply, Spike.Surface.FormComponent.handle_event(event, args, socket)}
+              {:noreply, Spike.Surface.FormLiveView.handle_event(event, args, socket)}
           end
         end
 
@@ -36,7 +34,7 @@ defmodule Spike.Surface.FormComponent do
     else
       quote do
         def handle_event(event, args, socket) do
-          {:noreply, Spike.Surface.FormComponent.handle_event(event, args, socket)}
+          {:noreply, Spike.Surface.FormLiveView.handle_event(event, args, socket)}
         end
       end
     end
