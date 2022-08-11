@@ -1,21 +1,58 @@
-# Spike.Surface
+# Readme
 
-**TODO: Add description**
+`Spike.Surface` provides a wrapper around
+[Surface.LiveView](https://hexdocs.pm/surface/Surface.LiveView.html) and
+[Surface.LiveComponent](https://hexdocs.pm/surface/Surface.LiveComponent.html#content),
+which simplifies working with memory-backed forms, including nested forms that require
+contextual validation.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+[Available in Hex](https://hex.pm/packages/spike_surface), the package can be installed
 by adding `spike_surface` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:spike_surface, "~> 0.1.0"}
+    {:spike_surface, "~> 0.2"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/spike_surface](https://hexdocs.pm/spike_surface).
+Documentation can be found at <https://hexdocs.pm/spike_surface>.
+
+## Quick start
+
+Once installed in a Phoenix project, open up your `*_web.ex` file and add the following
+functions:
+
+```
+  def form_surface_live_view do
+    quote do
+      use Surface.LiveView,
+        layout: {MyAppWeb.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+
+      use Spike.Surface
+    end
+  end
+
+  def form_surface_live_component do
+    quote do
+      use Surface.LiveComponent
+
+      unquote(view_helpers())
+
+      use Spike.Surface
+    end
+  end
+```
+
+[See Spike.LiveView](http://hexdocs.pm/spike_liveview) for walkthrough, which is applicable
+here, and also see [Spike Example app](https://github.com/hubertlepicki/spike_example) for 
+Spike + Surface UI examples.
+
+For starting point to build your own form components,
+see our [Components Library](components_library.md).
 

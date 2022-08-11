@@ -1,18 +1,10 @@
 defmodule Spike.Surface do
-  @moduledoc """
-  Documentation for `Spike.Surface`.
-  """
+  defmacro __using__(_opts) do
+    quote do
+      data(form, :struct)
+      data(errors, :map, default: %{})
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Spike.Surface.hello()
-      :world
-
-  """
-  def hello do
-    :world
+      @before_compile unquote(Spike.LiveView)
+    end
   end
 end
