@@ -7,7 +7,7 @@ defmodule Spike.Surface.MixProject do
     [
       app: :spike_surface,
       description: @description,
-      version: "0.3.0",
+      version: "0.4.0-rc.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       source_url: "https://github.com/hubertlepicki/spike-surface",
@@ -44,7 +44,7 @@ defmodule Spike.Surface.MixProject do
   defp deps do
     [
       {:surface, ">= 0.12.0"},
-      {:spike_liveview, "~> 0.3.0"},
+      {:spike_liveview, "~> 0.4.0-rc.0"},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false}
     ]
   end
