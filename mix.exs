@@ -43,7 +43,7 @@ defmodule Spike.Surface.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:surface, "~> 0.11"},
+      {:surface, ">= 0.12.0"},
       {:spike_liveview, "~> 0.3.0"},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false}
     ]
